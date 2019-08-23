@@ -1,4 +1,4 @@
-#SuperrbRedisHandlerBundle
+# SuperrbRedisHandlerBundle
 
 Handler for using Redis with Symfony, Doctrine and Sessions
 
