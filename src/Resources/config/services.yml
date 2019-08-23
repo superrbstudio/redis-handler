@@ -22,7 +22,7 @@ services:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
         arguments:
             - '@superrb_redis.service'
-            - ['prefix': 'session_']
+            - {'prefix': 'session_'}
 
     superrb_redis.doctrine_cache:
         class: Doctrine\Common\Cache\RedisCache
@@ -35,24 +35,24 @@ services:
                     - 'doctrine_'
 
 # Set up sessions and cache
-framework:
-    session:
-        handler_id: superrb_redis.session_handler
-    cache:
-        prefix_seed: "superrb/%superrb_redis_handler.memcached_prefix%"
-        app: cache.adapter.redis
-        system: cache.adapter.redis
-        default_redis_provider: superrb_redis.service
+#framework:
+#    session:
+#        handler_id: superrb_redis.session_handler
+#    cache:
+#        prefix_seed: "superrb/%superrb_redis_handler.memcached_prefix%"
+#        app: cache.adapter.redis
+#        system: cache.adapter.redis
+#        default_redis_provider: superrb_redis.service
 
 # Set up doctrine cache
-doctrine:
-    orm:
-        metadata_cache_driver:
-            type: service
-            id: superrb_redis.doctrine_cache
-        result_cache_driver:
-            type: service
-            id: superrb_redis.doctrine_cache
-        query_cache_driver:
-            type: service
-            id: superrb_redis.doctrine_cache
+#doctrine:
+#    orm:
+#        metadata_cache_driver:
+#            type: service
+#            id: superrb_redis.doctrine_cache
+#        result_cache_driver:
+#            type: service
+#            id: superrb_redis.doctrine_cache
+#        query_cache_driver:
+#            type: service
+#            id: superrb_redis.doctrine_cache
