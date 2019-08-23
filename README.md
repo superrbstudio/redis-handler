@@ -10,7 +10,7 @@ Storing sessions, application cache and doctrine cache in Redis can add some per
 ```bash
 composer require superrb/redis-handler
 ```
-Add `Superrb\GoogleRecaptchaBundle\SuperrbGoogleRecaptchaBundle::class => ['all' => true],` to `config/bundles.php`
+Add `Superrb\RedisHandlerBundle\SuperrbRedisHandlerBundle::class => ['all' => true],` to `config/bundles.php`
 
 ### Step 2: Add environment variables
 ```dotenv
