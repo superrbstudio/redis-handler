@@ -11,7 +11,6 @@ services:
                 arguments:
                     - '%superrb_redis_handler.redis_host%'
                     - '%superrb_redis_handler.redis_port%'
-            # If you need key prefix, uncomment line belows
             -   method: setOption
                 arguments:
                     - !php/const Redis::OPT_PREFIX
