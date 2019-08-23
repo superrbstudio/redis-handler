@@ -1,0 +1,25 @@
+{
+  "name": "superrb/redis-handler",
+  "description": "A handler for Redis to use for Session handling and caching in Symfony/Doctrine",
+  "keywords": [
+    "cms"
+  ],
+  "homepage": "https://gitlab.superrb.com/symfony/redis-handler",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Superrb Team",
+      "email": "tech@superrb.com"
+    }
+  ],
+  "require": {
+    "ext-redis": "*"
+  },
+  "autoload": {
+    "psr-4" : {
+      "Superrb\\RedisHandlerBundle\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

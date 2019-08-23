@@ -1,0 +1,5 @@
+parameters:
+    superrb_redis_handler.memcached_host: "%env(resolve:SUPERRB_REDIS_HOST)%"
+    superrb_redis_handler.memcached_port: "%env(float:SUPERRB_REDIS_PORT)%"
+    superrb_redis_handler.memcached_expire: "%env(float:SUPERRB_REDIS_EXPIRE)%"
+    superrb_redis_handler.memcached_prefix: "%env(string:SUPERRB_REDIS_PREFIX)%"
