@@ -1,8 +1,7 @@
 parameters:
     superrb_redis_handler.redis_host: "%env(resolve:SUPERRB_REDIS_HOST)%"
     superrb_redis_handler.redis_port: "%env(float:SUPERRB_REDIS_PORT)%"
-    superrb_redis_handler.memcached_expire: "%env(float:SUPERRB_REDIS_EXPIRE)%"
-    superrb_redis_handler.memcached_prefix: "%env(string:SUPERRB_REDIS_PREFIX)%"
+    superrb_redis_handler.redis_prefix: "%env(string:SUPERRB_REDIS_PREFIX)%"
 
 services:
     superrb_redis.service:
@@ -16,7 +15,7 @@ services:
             -   method: setOption
                 arguments:
                     - !php/const Redis::OPT_PREFIX
-                    - '%superrb_redis_handler.memcached_prefix%'
+                    - '%superrb_redis_handler.redis_prefix%'
 
     superrb_redis.session_handler:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
