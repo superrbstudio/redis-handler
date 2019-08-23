@@ -15,8 +15,7 @@ Add `Superrb\RedisHandlerBundle\SuperrbRedisHandlerBundle::class => ['all' => tr
 ### Step 2: Add environment variables
 ```dotenv
 ###> superrb/redis-handler ###
-SUPERRB_REDIS_HOST=127.0.0.1
-SUPERRB_REDIS_PORT=6379
+SUPERRB_REDIS_URL=redis://127.0.0.1:6379
 SUPERRB_REDIS_PREFIX=uniqueprefix_
 ###< superrb/redis-handler ###
 ```
