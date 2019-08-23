@@ -1,5 +1,58 @@
 parameters:
-    superrb_redis_handler.memcached_host: "%env(resolve:SUPERRB_REDIS_HOST)%"
-    superrb_redis_handler.memcached_port: "%env(float:SUPERRB_REDIS_PORT)%"
+    superrb_redis_handler.redis_host: "%env(resolve:SUPERRB_REDIS_HOST)%"
+    superrb_redis_handler.redis_port: "%env(float:SUPERRB_REDIS_PORT)%"
     superrb_redis_handler.memcached_expire: "%env(float:SUPERRB_REDIS_EXPIRE)%"
     superrb_redis_handler.memcached_prefix: "%env(string:SUPERRB_REDIS_PREFIX)%"
+
+services:
+    superrb_redis.service:
+        class: Redis
+        calls:
+            -   method: connect
+                arguments:
+                    - '%superrb_redis_handler.redis_host%'
+                    - '%superrb_redis_handler.redis_port%'
+            # If you need key prefix, uncomment line belows
+            -   method: setOption
+                arguments:
+                    - !php/const Redis::OPT_PREFIX
+                    - '%superrb_redis_handler.memcached_prefix%'
+
+    superrb_redis.session_handler:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
+        arguments:
+            - '@superrb_redis.service'
+            - ['prefix': 'session_']
+
+    superrb_redis.doctrine_cache:
+        class: Doctrine\Common\Cache\RedisCache
+        calls:
+            -   method: setRedis
+                arguments:
+                    - '@superrb_redis.service'
+            -   method: setNamespace
+                arguments:
+                    - 'doctrine_'
+
+# Set up sessions and cache
+framework:
+    session:
+        handler_id: superrb_redis.session_handler
+    cache:
+        prefix_seed: "superrb/%superrb_redis_handler.memcached_prefix%"
+        app: cache.adapter.redis
+        system: cache.adapter.redis
+        default_redis_provider: superrb_redis.service
+
+# Set up doctrine cache
+doctrine:
+    orm:
+        metadata_cache_driver:
+            type: service
+            id: superrb_redis.doctrine_cache
+        result_cache_driver:
+            type: service
+            id: superrb_redis.doctrine_cache
+        query_cache_driver:
+            type: service
+            id: superrb_redis.doctrine_cache
