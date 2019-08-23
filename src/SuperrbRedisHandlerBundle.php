@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class MemcachedHandlerBundle
- * @package Superrb\MemcachedHandlerBundle
+ * Class SuperrbRedisHandlerBundle
+ * @package Superrb\RedisHandlerBundle
  */
 class SuperrbRedisHandlerBundle extends Bundle
 {
@@ -18,6 +18,6 @@ class SuperrbRedisHandlerBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-        $container->registerExtension(new SuperrbMemcachedHandlerExtension());
+        $container->registerExtension(new SuperrbRedisHandlerExtension());
     }
 }

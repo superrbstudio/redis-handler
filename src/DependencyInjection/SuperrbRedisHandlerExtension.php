@@ -9,8 +9,8 @@ use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * Class MemcachedHandlerExtension
- * @package Superrb\MemcachedHandlerBundle\DependencyInjection
+ * Class SuperrbRedisHandlerExtension
+ * @package Superrb\RedisHandlerBundle\DependencyInjection
  */
 class SuperrbRedisHandlerExtension extends Extension
 {
